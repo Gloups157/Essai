@@ -3,87 +3,92 @@ project(Essai)
 
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(glfw3 REQUIRED)
+find_package(glad CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
+find_package(Stb REQUIRED)
 
-include_directories(include)
+include_directories(Essai PRIVATE include)
 
-add_executable(Essai src/main.cpp src/tiers/glad/glad.c
-        src/application/layers/engine/graphics/Shader.cpp
-        include/application/layers/engine/graphics/Shader.h
-        src/application/layers/engine/graphics/Texture.cpp
-        include/application/layers/engine/graphics/Texture.h
-        src/tiers/stb/stb_image.cpp
-        src/application/layers/engine/core/Engine.cpp
-        include/application/layers/engine/core/Engine.h
-        src/application/layers/engine/core/Camera.cpp
-        include/application/layers/engine/core/Camera.h
-        include/application/layers/engine/window/AWindow.h
-        include/application/layers/engine/input/AInput.h
-        src/application/layers/engine/time/ATime.cpp
-        include/application/layers/engine/time/ATime.h
-        include/application/layers/engine/input/EKey.h
-        include/application/layers/engine/input/InputInfo.h
-        include/application/layers/engine/input/EInputState.h
-        include/application/layers/engine/input/EMouseButton.h
-        src/application/layers/engine/window/WindowGLFW.cpp
-        include/application/layers/engine/window/WindowGLFW.h
-        include/application/layers/engine/window/WindowSettings.h
-        src/application/layers/engine/input/InputGLFW.cpp
-        include/application/layers/engine/input/InputGLFW.h
-        include/application/layers/engine/core/EngineContext.h
-        include/application/layers/engine/window/EWindowBackend.h
-        include/application/layers/engine/window/WindowFactory.h
-        include/application/layers/engine/input/InputFactory.h
-        include/application/layers/engine/ecs/components/Meta.h
-        include/application/layers/engine/ecs/core/ComponentSparseSet.h
-        include/application/layers/engine/ecs/components/Transform.h
-        include/application/layers/engine/ecs/core/IComponentSparseSet.h
-        include/application/layers/engine/ecs/core/ILifeCycle.h
-        include/application/layers/engine/ecs/core/ECSTypes.h
-        src/application/layers/engine/ecs/core/SystemManager.cpp
-        include/application/layers/engine/ecs/core/SystemManager.h
-        src/application/layers/engine/ecs/core/EntityManager.cpp
-        include/application/layers/engine/ecs/core/EntityManager.h
-        include/application/layers/engine/ecs/core/ASystem.h
-        src/application/layers/engine/ecs/core/ASystem.cpp
-        src/application/layers/engine/ecs/core/World.cpp
-        include/application/layers/engine/ecs/core/World.h
-        src/application/layers/engine/ecs/core/Universe.cpp
-        include/application/layers/engine/ecs/core/Universe.h
-        src/application/layers/engine/ecs/core/Query.cpp
-        include/application/layers/engine/ecs/core/Query.h
-        src/application/layers/engine/ecs/systems/DummySystem.cpp
-        include/application/layers/engine/ecs/systems/DummySystem.h
-        src/application/layers/engine/ecs/systems/MovementSystem.cpp
-        include/application/layers/engine/ecs/systems/MovementSystem.h
-        src/application/layers/engine/graphics/IRenderer.cpp
-        include/application/layers/engine/graphics/IRenderer.h
-        src/application/layers/engine/graphics/RendererOpenGL.cpp
-        include/application/layers/engine/graphics/RendererOpenGL.h
-        src/application/layers/engine/time/TimeGLFW.cpp
-        include/application/layers/engine/time/TimeGLFW.h
-        src/application/layers/engine/time/TimeFactory.cpp
-        include/application/layers/engine/time/TimeFactory.h
-        include/application/layers/engine/graphics/OpenGLCore.h
-        include/application/layers/engine/graphics/ERendererBackend.h
-        include/application/layers/engine/graphics/RendererFactory.h
-        src/application/layers/engine/input/AInput.cpp
-        include/application/layers/engine/ecs/components/View.h
-        src/application/layers/engine/ecs/systems/ViewSystem.cpp
-        include/application/layers/engine/ecs/systems/ViewSystem.h
+add_executable(Essai src/main.cpp
+        src/engine/renderer/Shader.cpp
+        include/engine/renderer/Shader.h
+        src/engine/renderer/Texture.cpp
+        include/engine/renderer/Texture.h
+        src/engine/core/Engine.cpp
+        include/engine/core/Engine.h
+        src/engine/core/Camera.cpp
+        include/engine/core/Camera.h
+        include/engine/window/AWindow.h
+        include/engine/input/AInput.h
+        src/engine/time/ATime.cpp
+        include/engine/time/ATime.h
+        include/engine/input/EKey.h
+        include/engine/input/InputInfo.h
+        include/engine/input/EInputState.h
+        include/engine/input/EMouseButton.h
+        src/engine/window/glfw/GLFWWindow.cpp
+        include/engine/window/glfw/GLFWWindow.h
+        include/engine/window/WindowSettings.h
+        src/engine/input/glfw/GLFWInput.cpp
+        include/engine/input/glfw/GLFWInput.h
+        include/engine/core/EngineContext.h
+        include/engine/window/EWindowBackend.h
+        include/engine/window/WindowFactory.h
+        include/engine/input/InputFactory.h
+        include/engine/ecs/components/Meta.h
+        include/engine/ecs/core/ComponentSparseSet.h
+        include/engine/ecs/components/Transform.h
+        include/engine/ecs/core/IComponentSparseSet.h
+        include/engine/ecs/core/ILifeCycle.h
+        include/engine/ecs/core/ECSTypes.h
+        src/engine/ecs/core/SystemManager.cpp
+        include/engine/ecs/core/SystemManager.h
+        src/engine/ecs/core/EntityManager.cpp
+        include/engine/ecs/core/EntityManager.h
+        include/engine/ecs/core/ASystem.h
+        src/engine/ecs/core/ASystem.cpp
+        src/engine/ecs/core/World.cpp
+        include/engine/ecs/core/World.h
+        src/engine/ecs/core/Universe.cpp
+        include/engine/ecs/core/Universe.h
+        src/engine/ecs/core/Query.cpp
+        include/engine/ecs/core/Query.h
+        src/engine/ecs/systems/MovementSystem.cpp
+        include/engine/ecs/systems/MovementSystem.h
+        src/engine/renderer/ARenderer.cpp
+        include/engine/renderer/ARenderer.h
+        src/engine/renderer/opengl/OpenGLRenderer.cpp
+        include/engine/renderer/opengl/OpenGLRenderer.h
+        src/engine/time/glfw/GLFWTime.cpp
+        include/engine/time/glfw/GLFWTime.h
+        src/engine/time/TimeFactory.cpp
+        include/engine/time/TimeFactory.h
+        include/engine/renderer/opengl/OpenGLCore.h
+        include/engine/renderer/ERendererBackend.h
+        include/engine/renderer/RendererFactory.h
+        src/engine/input/AInput.cpp
+        include/engine/ecs/components/View.h
         src/application/core/Application.cpp
         include/application/core/Application.h
         src/application/core/ApplicationLayer.cpp
         include/application/core/ApplicationLayer.h
-        "src/utilities/patterns/state machine/StateMachine.cpp"
-        "include/utilities/patterns/state machine/StateMachine.h"
-        "src/utilities/patterns/state machine/ITransition.cpp"
-        "include/utilities/patterns/state machine/ITransition.h"
-        "src/utilities/patterns/state machine/StateNode.cpp"
-        "include/utilities/patterns/state machine/StateNode.h"
-        "src/utilities/patterns/state machine/IState.cpp"
-        "include/utilities/patterns/state machine/IState.h"
-        include/utilities/containers/SparseSet.h
+        "src/core/utilities/patterns/statemachine/StateMachine.cpp"
+        "include/core/utilities/patterns/statemachine/StateMachine.h"
+        "src/core/utilities/patterns/statemachine/ITransition.cpp"
+        "include/core/utilities/patterns/statemachine/ITransition.h"
+        "src/core/utilities/patterns/statemachine/StateNode.cpp"
+        "include/core/utilities/patterns/statemachine/StateNode.h"
+        "src/core/utilities/patterns/statemachine/IState.cpp"
+        "include/core/utilities/patterns/statemachine/IState.h"
+        include/core/utilities/containers/TypeVector.h
+        src/engine/renderer/RendererSystem.cpp
+        include/engine/renderer/RendererSystem.h
+        include/engine/ecs/components/Renderer2D.h
+        include/core/Types.h
+        src/core/utilities/helpers/AActivable.cpp
+        include/core/utilities/helpers/AActivable.h
+        src/engine/renderer/opengl/OpenGLTextureLibrary.cpp
+        include/engine/renderer/opengl/OpenGLTextureLibrary.h
 )
 
-target_link_libraries(Essai glfw)
+target_link_libraries(Essai PRIVATE glad::glad PRIVATE glfw)

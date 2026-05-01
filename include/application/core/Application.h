@@ -2,7 +2,7 @@
 #define APPLICATION_H
 
 #include "ApplicationLayer.h"
-#include "utilities/containers/SparseSet.h"
+#include "core/utilities/containers/TypeVector.h"
 
 class Application {
 public:
@@ -32,7 +32,7 @@ public:
     }
 
 private:
-    SparseSet<ApplicationLayer> layers;
+    Core::TypeVector<ApplicationLayer> layers;
 };
 
 #endif //APPLICATION_H
